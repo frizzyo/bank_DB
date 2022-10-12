@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кредиты отфильтрованные по процентной ставке</title>
+</head>
+<body>
+<table border="1px">
+    <caption>
+        Кредиты отфильтрованные по процентной ставке
+    </caption>
+    <tr>
+        <th>Код кредита</th>
+        <th>Название кредита</th>
+        <th>Процентная ставка</th>
+        <th>Условия предоставления</th>
+    </tr>
+    {% for credit in credit_info %}
+        <tr>
+            <td>{{ credit.credit_type_id }}</td>
+            <td>{{ credit.credit_name }}</td>
+            <td>{{ credit.interest_rate }}</td>
+            <td>{{ credit.provision_condition }}</td>
+        </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
