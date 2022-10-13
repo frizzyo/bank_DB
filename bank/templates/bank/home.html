@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <title>Домашняя страница</title>
+</head>
+<body>
+<ul class="menu">
+        <li><a href="/bank/task1">Задание 1</a>
+        <a href="/bank/task2">Задание 2</a></li>
+</ul>
+<table border="2px">
+    <caption>
+        Клиенты {% if user.is_authenticated %}
+        <a href="{% url 'client_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+    {% endif %}
+    </caption>
+    <tr>
+        <th></th>
+        <th>Фамилия</th>
+        <th>Имя</th>
+        <th>Отчество</th>
+        <th>Паспортные данные</th>
+        <th>Адрес</th>
+        <th>Зарплата</th>
+    </tr>
+    {% for name in client %}
+        <tr>
+            <td>{{ name.client_id }}</td>
+            <td>{{ name.First_name }}</td>
+            <td>{{ name.Second_name }}</td>
+            <td>{{ name.Third_name }}</td>
+            <td>{{ name.Passport }}</td>
+            <td>{{ name.Address }}</td>
+            <td>{{ name.Salary }}</td>
+        </tr>
+    {% endfor %}
+</table>
+<table border="2px">
+    <caption>
+        Виды кредитов {% if user.is_authenticated %}
+        <a href="{% url 'creditinfo_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+    {% endif %}
+    </caption>
+    <tr>
+        <th>Код кредита</th>
+        <th>Название кредита</th>
+        <th>Процентная ставка</th>
+        <th>Условия предоставления</th>
+    </tr>
+    {% for credit in creditinfo %}
+        <tr>
+            <td>{{ credit.credit_type_id }}</td>
+            <td>{{ credit.credit_name }}</td>
+            <td>{{ credit.interest_rate }}</td>
+            <td>{{ credit.provision_condition }}</td>
+        </tr>
+    {% endfor %}
+</table>
+<table border="2px">
+    <caption>
+        Кредиты {% if user.is_authenticated %}
+        <a href="{% url 'credit_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+    {% endif %}
+    </caption>
+    <tr>
+        <th>Номер клиенты</th>
+        <th>Тип кредита</th>
+        <th>Когда взяли</th>
+        <th>На какой срок</th>
+        <th>Дата возвращения</th>
+        <th>Сумма кредита</th>
+        <th>Погашен</th>
+    </tr>
+    {% for name in credit %}
+        <tr>
+            <td>{{ name.client_id }}</td>
+            <td>{{ name.credit_type_id }}</td>
+            <td>{{ name.submission_date }}</td>
+            <td>{{ name.how_long }}</td>
+            <td>{{ name.return_date }}</td>
+            <td>{{ name.cost }}</td>
+            <td>{{ name.is_payed }}</td>
+        </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
